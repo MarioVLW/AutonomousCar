@@ -1,0 +1,11 @@
+#ignore matlab folder
+MATLAB/
+
+#ignore Microship
+Microchip/
+
+#ignore Raspberry
+Raspberry/
+
+
+
