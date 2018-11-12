@@ -35,27 +35,29 @@
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\Umul64.c
 [v ___omul __omul `(uo  1 e 8 0 ]
-"62 E:\Documentos\University\Ago-Dic(2018)\PIM\Programas\ControlMotorPos.X\main.c
+"69 E:\Documentos\University\Ago-Dic(2018)\PIM\Programas\ControlMotorPos.X\main.c
 [v _ISR_high ISR_high `IIH(v  1 e 1 0 ]
-"91
+"128
 [v _main main `(v  1 e 1 0 ]
-"136
+"174
 [v _calculatePWM calculatePWM `(l  1 e 4 0 ]
-"170
+"208
 [v _init_TMR1 init_TMR1 `(v  1 e 1 0 ]
-"177
+"215
 [v _init_VNHIO init_VNHIO `(v  1 e 1 0 ]
-"187
+"225
 [v _init_PWM init_PWM `(v  1 e 1 0 ]
-"198
+"236
 [v _write_PWM write_PWM `(v  1 e 1 0 ]
-"205
+"243
 [v _init_QEI init_QEI `(v  1 e 1 0 ]
-"221
+"259
 [v _init_UART init_UART `(v  1 e 1 0 ]
-"231
+"269
+[v _init_I2C init_I2C `(v  1 e 1 0 ]
+"278
 [v _init_ISR init_ISR `(v  1 e 1 0 ]
-"247
+"298
 [v _int2char int2char `(*.39uc  1 e 2 0 ]
 "298 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4431.h
 [v _MAXCNTL MAXCNTL `VEuc  1 e 1 @3940 ]
@@ -83,25 +85,31 @@
 [v _ANSEL1 ANSEL1 `VEuc  1 e 1 @4025 ]
 "5334
 [v _CCP1CON CCP1CON `VEuc  1 e 1 @4029 ]
-[s S96 . 1 `uc 1 CCP1M 1 0 :4:0 
+[s S110 . 1 `uc 1 CCP1M 1 0 :4:0 
 `uc 1 DC1B 1 0 :2:4 
 ]
 "5358
-[s S99 . 1 `uc 1 CCP1M0 1 0 :1:0 
+[s S113 . 1 `uc 1 CCP1M0 1 0 :1:0 
 `uc 1 CCP1M1 1 0 :1:1 
 `uc 1 CCP1M2 1 0 :1:2 
 `uc 1 CCP1M3 1 0 :1:3 
 `uc 1 CCP1Y 1 0 :1:4 
 `uc 1 CCP1X 1 0 :1:5 
 ]
-[s S106 . 1 `uc 1 . 1 0 :4:0 
+[s S120 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 DC1B0 1 0 :1:4 
 `uc 1 DC1B1 1 0 :1:5 
 ]
-[u S110 . 1 `S96 1 . 1 0 `S99 1 . 1 0 `S106 1 . 1 0 ]
-[v _CCP1CONbits CCP1CONbits `VES110  1 e 1 @4029 ]
+[u S124 . 1 `S110 1 . 1 0 `S113 1 . 1 0 `S120 1 . 1 0 ]
+[v _CCP1CONbits CCP1CONbits `VES124  1 e 1 @4029 ]
 "5420
 [v _CCPR1L CCPR1L `VEuc  1 e 1 @4030 ]
+"5746
+[v _SSPCON SSPCON `VEuc  1 e 1 @4038 ]
+"6105
+[v _SSPADD SSPADD `VEuc  1 e 1 @4040 ]
+"6112
+[v _SSPBUF SSPBUF `VEuc  1 e 1 @4041 ]
 "6119
 [v _T2CON T2CON `VEuc  1 e 1 @4042 ]
 "6217
@@ -112,6 +120,10 @@
 [v _TMR1 TMR1 `VEus  1 e 2 @4046 ]
 "6702
 [v _OSCCON OSCCON `VEuc  1 e 1 @4051 ]
+"7744
+[v _BF BF `VEb  1 e 0 @32312 ]
+"7906
+[v _CKP CKP `VEb  1 e 0 @32308 ]
 "8119
 [v _GIE GIE `VEb  1 e 0 @32663 ]
 "8245
@@ -122,6 +134,14 @@
 [v _LATA1 LATA1 `VEb  1 e 0 @31817 ]
 "8341
 [v _LATC2 LATC2 `VEb  1 e 0 @31834 ]
+"9073
+[v _SSPIE SSPIE `VEb  1 e 0 @31979 ]
+"9076
+[v _SSPIF SSPIF `VEb  1 e 0 @31987 ]
+"9079
+[v _SSPIP SSPIP `VEb  1 e 0 @31995 ]
+"9094
+[v _SSPOV SSPOV `VEb  1 e 0 @32310 ]
 "9274
 [v _TMR1IE TMR1IE `VEb  1 e 0 @31976 ]
 "9277
@@ -140,6 +160,10 @@
 [v _TRISA5 TRISA5 `VEb  1 e 0 @31893 ]
 "9382
 [v _TRISC2 TRISC2 `VEb  1 e 0 @31906 ]
+"9388
+[v _TRISC4 TRISC4 `VEb  1 e 0 @31908 ]
+"9391
+[v _TRISC5 TRISC5 `VEb  1 e 0 @31909 ]
 "9394
 [v _TRISC6 TRISC6 `VEb  1 e 0 @31910 ]
 "9514
@@ -148,55 +172,61 @@
 [v _TXIF TXIF `VEb  1 e 0 @31988 ]
 "9520
 [v _TXIP TXIP `VEb  1 e 0 @31996 ]
+"9574
+[v _WCOL WCOL `VEb  1 e 0 @32311 ]
 [s S24 . 1 `uc 1 DIRCTRL 1 0 :1:0 
 `uc 1 STCTRL 1 0 :1:1 
 `uc 1 VELCTRL 1 0 :1:2 
-`uc 1 STPCRL 1 0 :1:3 
-`uc 1 TXCTRL 1 0 :1:4 
-`uc 1 . 1 0 :3:5 
+`uc 1 I2CADD 1 0 :1:3 
+`uc 1 I2CDAT 1 0 :1:4 
+`uc 1 STPCRL 1 0 :1:5 
+`uc 1 TXCTRL 1 0 :1:6 
+`uc 1 . 1 0 :1:7 
 ]
-"38 E:\Documentos\University\Ago-Dic(2018)\PIM\Programas\ControlMotorPos.X\main.c
+"43 E:\Documentos\University\Ago-Dic(2018)\PIM\Programas\ControlMotorPos.X\main.c
 [v _GPREG GPREG `S24  1 e 1 0 ]
-[s S31 Control 12 `l 1 Kp 4 0 `l 1 Ki 4 4 `l 1 Kd 4 8 ]
-"46
-[v _PID PID `S31  1 e 12 0 ]
-"48
-[v _ref_pos ref_pos `ui  1 e 2 0 ]
-"50
-[v _error error `i  1 e 2 0 ]
+[s S33 Control 12 `l 1 Kp 4 0 `l 1 Ki 4 4 `l 1 Kd 4 8 ]
 "51
-[v _error_ant error_ant `i  1 e 2 0 ]
-"52
-[v _suma_error suma_error `l  1 e 4 0 ]
+[v _PID PID `S33  1 e 12 0 ]
 "53
-[v _pos pos `ui  1 e 2 0 ]
+[v _ref_pos ref_pos `ui  1 e 2 0 ]
 "55
-[v _volt volt `l  1 e 4 0 ]
+[v _error error `i  1 e 2 0 ]
 "56
-[v _velocity velocity `l  1 e 4 0 ]
-"59
-[v _string_pos string_pos `*.39uc  1 e 2 0 ]
+[v _error_ant error_ant `i  1 e 2 0 ]
+"57
+[v _suma_error suma_error `l  1 e 4 0 ]
+"58
+[v _pos pos `ui  1 e 2 0 ]
 "60
+[v _volt volt `l  1 e 4 0 ]
+"61
+[v _velocity velocity `l  1 e 4 0 ]
+"64
+[v _string_pos string_pos `*.39uc  1 e 2 0 ]
+"65
 [v _cursor cursor `c  1 e 1 0 ]
-"91
+"67
+[v _i2cData i2cData `uc  1 e 1 0 ]
+"128
 [v _main main `(v  1 e 1 0 ]
 {
-"107
-[v main@counter counter `uc  1 a 1 1 ]
-"134
+"145
+[v main@counter counter `uc  1 a 1 2 ]
+"172
 } 0
-"247
+"298
 [v _int2char int2char `(*.39uc  1 e 2 0 ]
 {
-"252
+"303
 [v int2char@digit digit `c  1 a 1 15 ]
-"250
+"301
 [v int2char@num num `ui  1 a 2 13 ]
-"247
+"298
 [v int2char@number number `ui  1 p 2 11 ]
-"249
+"300
 [v int2char@string string `[5]uc  1 s 5 string ]
-"259
+"310
 } 0
 "7 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\lwmod.c
 [v ___lwmod __lwmod `(ui  1 e 2 0 ]
@@ -220,46 +250,51 @@
 [v ___lwdiv@divisor divisor `ui  1 p 2 6 ]
 "30
 } 0
-"177 E:\Documentos\University\Ago-Dic(2018)\PIM\Programas\ControlMotorPos.X\main.c
+"215 E:\Documentos\University\Ago-Dic(2018)\PIM\Programas\ControlMotorPos.X\main.c
 [v _init_VNHIO init_VNHIO `(v  1 e 1 0 ]
 {
-"185
+"223
 } 0
-"221
+"259
 [v _init_UART init_UART `(v  1 e 1 0 ]
 {
-"229
+"267
 } 0
-"170
+"208
 [v _init_TMR1 init_TMR1 `(v  1 e 1 0 ]
 {
-"175
+"213
 } 0
-"205
+"243
 [v _init_QEI init_QEI `(v  1 e 1 0 ]
 {
-"219
+"257
 } 0
-"187
+"225
 [v _init_PWM init_PWM `(v  1 e 1 0 ]
 {
-"196
+"234
 } 0
-"198
+"236
 [v _write_PWM write_PWM `(v  1 e 1 0 ]
 {
-[v write_PWM@dutyCycle dutyCycle `ui  1 p 2 42 ]
-"203
+[v write_PWM@dutyCycle dutyCycle `ui  1 p 2 0 ]
+"241
 } 0
-"231
+"278
 [v _init_ISR init_ISR `(v  1 e 1 0 ]
 {
-"245
+"296
 } 0
-"136
+"269
+[v _init_I2C init_I2C `(v  1 e 1 0 ]
+{
+"276
+} 0
+"174
 [v _calculatePWM calculatePWM `(l  1 e 4 0 ]
 {
-"168
+"206
 } 0
 "15 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\sources\c99\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -294,8 +329,8 @@
 [v ___aldiv@divisor divisor `l  1 p 4 20 ]
 "41
 } 0
-"62 E:\Documentos\University\Ago-Dic(2018)\PIM\Programas\ControlMotorPos.X\main.c
+"69 E:\Documentos\University\Ago-Dic(2018)\PIM\Programas\ControlMotorPos.X\main.c
 [v _ISR_high ISR_high `IIH(v  1 e 1 0 ]
 {
-"89
+"126
 } 0

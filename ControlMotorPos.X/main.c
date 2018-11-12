@@ -16,6 +16,8 @@
 #define ASCII_CR 0xD0
 #define MAX_COUNTS 57142u
 
+#define PICADD 0x46 
+
 int32_t calculatePWM(int8_t setpoint);
 void write_PWM(uint16_t dutyCycle);
 void init_QEI(void);
@@ -25,6 +27,7 @@ void init_ISR(void);
 void init_TMR1(void);
 void init_UART(void);
 uint8_t * int2char(uint16_t number);
+void init_I2C(void);
 
 //General purpose registers
 struct
@@ -32,9 +35,11 @@ struct
     uint8_t DIRCTRL  :1;    //Motor direction control
     uint8_t STCTRL   :1;    //Sample time control
     uint8_t VELCTRL  :1;    //Velocity control
+    uint8_t I2CADD   :1;  //I2C address received flag
+    uint8_t I2CDAT   :1;  //I2C data received flag
     uint8_t STPCRL   :1;    //Stop control
     uint8_t TXCTRL   :1;    //Transmit data control
-    uint8_t          :3;    //padding
+    uint8_t          :1;    //padding
 } GPREG; 
 
 //Controller struct
@@ -59,8 +64,40 @@ uint8_t pos_degree = 0;
 uint8_t *string_pos;
 int8_t cursor = 0;
 
+uint8_t i2cData;
+
 void __interrupt () ISR_high(void)
 {
+    
+     if(SSPIE == 1 && SSPIF == 1)
+    {
+        //CKP = 0; //hold clock
+        if(SSPOV == 1 || WCOL == 1)
+        {
+            i2cData = SSPBUF;
+            SSPOV = 0;
+            WCOL = 0;
+            CKP = 1;
+        }//end overrund and word collision scenario
+            
+        if(SSPBUF == SSPADD)
+        {
+           //i2cData=SSPBUF;
+           GPREG.I2CADD = 1;
+           BF = 0;
+           CKP = 1;
+        }//end address identefier scenario
+        
+        if(GPREG.I2CADD == 1 && 0 != SSPBUF && SSPBUF != SSPADD)
+        {
+            i2cData = SSPBUF;
+            CKP = 1;
+            GPREG.I2CADD = 0;
+        }
+        
+        SSPIF = 0;
+}//end I2C communication
+    
     if(1 == TMR1IE && 1 == TMR1IF)
     {
         GPREG.STCTRL = 1;
@@ -97,6 +134,7 @@ void main(void)
     PID.Kd = 2664;
 
     init_VNHIO();
+    init_I2C();
     init_TMR1();
     init_PWM();
     init_QEI();
@@ -228,12 +266,25 @@ void init_UART()
     SPBRG = _SPBRG_9600_8MHZ_MASK;
 }//End UART configuration
 
+void init_I2C()
+{
+    TRISC5 = 1; //SCL pin
+    TRISC4 = 1; //SDA pin
+    SSPCON =0b00110110; //I2C configuration bit-7 No collision,bit-6 No overflow
+                         //bit-5 enable SP set SDA and SCL, bit 3-0 0110 I2C slave 7-bit addrs
+    SSPADD = PICADD; //I2C address, add ranges from 001 -110
+}//end I2C  
+
 void init_ISR()
 {
     //TMR1 interrupt
     TMR1IF = 0; 
     TMR1IE = 1; 
     TMR1IP = 1; 
+    
+    //I2C interrupt
+    SSPIE = 1; //Synchronoues serial port interrupt enable
+    SSPIP = 1; //Synchronous serial port priority enable
 
     //TX interrupt
     TXIE = 0; //Enable transmission interrupt
