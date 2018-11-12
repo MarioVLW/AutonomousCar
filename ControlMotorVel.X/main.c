@@ -9,10 +9,10 @@
 #define _RCSTA_SPEN_CREN_MASK 0x90
 #define _SPBRG_9600_8MHZ_MASK 12
 #define PWM_PERIOD 255u
+#define VEL_MAX 800u
+#define VEL_MIN 10u
 #define ASCII_COMMA 0x2C
-#define ASCII_SEMICOLON 0x3B
-#define ASCII_CR 0xD0
-#define MAX_COUNTS 57142u
+#define PICADD 0x46
 
 int32_t calculatePWM(int8_t setpoint);
 void write_PWM(uint16_t dutyCycle);
@@ -23,6 +23,8 @@ void init_ISR(void);
 void init_TMR1(void);
 void init_UART(void);
 uint8_t * int2char(uint16_t number);
+void init_I2C(void);
+uint16_t dataToVel(uint8_t data);
 
 //General purpose registers
 struct
@@ -30,9 +32,11 @@ struct
     uint8_t DIRCTRL  :1;    //Motor direction control
     uint8_t STCTRL   :1;    //Sample time control
     uint8_t VELCTRL  :1;    //Velocity control
+    uint8_t I2CADD   :1;  //I2C address received flag
+    uint8_t I2CDAT   :1;  //I2C data received flag
     uint8_t STPCRL   :1;    //Stop control
     uint8_t TXCTRL   :1;    //Transmit data control
-    uint8_t          :3;    //padding
+    uint8_t          :1;    //padding
 } GPREG; 
 
 //Controller struct
@@ -43,8 +47,7 @@ struct Control
     int32_t Kd;
 } PID;
 
-uint16_t ref_vel = 800;
-uint16_t input = 0;
+uint16_t ref_vel = 0;
 int16_t error = 0;
 int16_t error_ant = 0;
 uint16_t vel = 0;
@@ -52,14 +55,44 @@ uint16_t vel_ant = 0;
 int32_t suma_error = 0;
 int32_t volt = 0;
 int32_t aceleracion = 0;
-uint8_t vel_rpm = 0;
 
 uint8_t *string_vel;
-uint8_t *string_input;
 int8_t cursor = 0;
+
+uint8_t i2cData;
 
 void __interrupt () ISR_high(void)
 {
+    
+    if(SSPIE == 1 && SSPIF == 1)
+    {
+        //CKP = 0; //hold clock
+        if(SSPOV == 1 || WCOL == 1)
+        {
+            i2cData = SSPBUF;
+            SSPOV = 0;
+            WCOL = 0;
+            CKP = 1;
+        }//end overrund and word collision scenario
+            
+        if(SSPBUF == SSPADD)
+        {
+           //i2cData=SSPBUF;
+           GPREG.I2CADD = 1;
+           BF = 0;
+           CKP = 1;
+        }//end address identefier scenario
+        
+        if(GPREG.I2CADD == 1 && 0 != SSPBUF && SSPBUF != SSPADD)
+        {
+            i2cData = SSPBUF;
+            CKP = 1;
+            GPREG.I2CADD = 0;
+        }
+        
+        SSPIF = 0;
+    }//end I2C communication
+    
     if(1 == TMR5IE && 1 == TMR5IF)
     {
         TMR5IF = 0;
@@ -105,29 +138,21 @@ void main(void)
     init_TMR1();
     init_PWM();
     init_QEI();
+    init_I2C();
     init_UART();
     init_ISR();
     GPREG.DIRCTRL = 1;
     
-    uint8_t counter = 0;
-    
     while(1)
     {
+        
+        ref_vel = dataToVel(i2cData);
+        
         if(1 == GPREG.STCTRL)
         {
-           /*counter++;
-            
-            if(counter >= 50)
-            {
-                input = 1022;
-            }*/
             write_PWM(calculatePWM(ref_vel));
-            //write_PWM(input);
-            //calculatePWM(ref_vel);
-            //TODO: Convert the value of vel into characters
 
             string_vel = int2char(vel);
-            //TODO: Send the data with a comma to make csv file
             TXIE = 1;
             
             if(1 == GPREG.DIRCTRL)
@@ -261,6 +286,10 @@ void init_ISR()
     TMR5IF = 0;
     TMR5IE = 1;
     TMR5IP = 1;
+    
+    //I2C interrupt
+    SSPIE = 1; //Synchronoues serial port interrupt enable
+    SSPIP = 1; //Synchronous serial port priority enable
 
     //TX interrupt
     TXIE = 0; //Enable transmission interrupt
@@ -283,4 +312,30 @@ uint8_t * int2char(uint16_t number)
     }
     
     return string;
+}
+
+void init_I2C()
+{
+    TRISC5 = 1; //SCL pin
+    TRISC4 = 1; //SDA pin
+    SSPCON =0b00110110; //I2C configuration bit-7 No collision,bit-6 No overflow
+                         //bit-5 enable SP set SDA and SCL, bit 3-0 0110 I2C slave 7-bit addrs
+    SSPADD = PICADD; //I2C address, add ranges from 001 -110
+}//end I2C  
+
+uint16_t dataToVel(uint8_t data)
+{
+    uint16_t vel = (uint16_t)data*10;
+    
+    if(VEL_MIN >= vel)
+    {
+        vel = 0;
+    }
+    
+    if(VEL_MAX < vel)
+    {
+        vel = VEL_MAX;
+    }
+    
+    return vel;
 }

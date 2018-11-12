@@ -5143,7 +5143,7 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 
 #pragma config FLTAMX = RC1
-#pragma config SSPMX = RC7
+#pragma config SSPMX = RD1
 #pragma config PWM4MX = RB5
 #pragma config EXCLKMX = RC3
 #pragma config MCLRE = ON
@@ -5205,6 +5205,8 @@ void init_ISR(void);
 void init_TMR1(void);
 void init_UART(void);
 uint8_t * int2char(uint16_t number);
+void init_I2C(void);
+uint16_t dataToVel(uint8_t data);
 
 
 struct
@@ -5212,9 +5214,11 @@ struct
     uint8_t DIRCTRL :1;
     uint8_t STCTRL :1;
     uint8_t VELCTRL :1;
+    uint8_t I2CADD :1;
+    uint8_t I2CDAT :1;
     uint8_t STPCRL :1;
     uint8_t TXCTRL :1;
-    uint8_t :3;
+    uint8_t :1;
 } GPREG;
 
 
@@ -5225,8 +5229,7 @@ struct Control
     int32_t Kd;
 } PID;
 
-uint16_t ref_vel = 800;
-uint16_t input = 0;
+uint16_t ref_vel = 0;
 int16_t error = 0;
 int16_t error_ant = 0;
 uint16_t vel = 0;
@@ -5234,14 +5237,44 @@ uint16_t vel_ant = 0;
 int32_t suma_error = 0;
 int32_t volt = 0;
 int32_t aceleracion = 0;
-uint8_t vel_rpm = 0;
 
 uint8_t *string_vel;
-uint8_t *string_input;
 int8_t cursor = 0;
+
+uint8_t i2cData;
 
 void __attribute__((picinterrupt(""))) ISR_high(void)
 {
+
+    if(SSPIE == 1 && SSPIF == 1)
+    {
+
+        if(SSPOV == 1 || WCOL == 1)
+        {
+            i2cData = SSPBUF;
+            SSPOV = 0;
+            WCOL = 0;
+            CKP = 1;
+        }
+
+        if(SSPBUF == SSPADD)
+        {
+
+           GPREG.I2CADD = 1;
+           BF = 0;
+           CKP = 1;
+        }
+
+        if(GPREG.I2CADD == 1 && 0 != SSPBUF && SSPBUF != SSPADD)
+        {
+            i2cData = SSPBUF;
+            CKP = 1;
+            GPREG.I2CADD = 0;
+        }
+
+        SSPIF = 0;
+    }
+
     if(1 == TMR5IE && 1 == TMR5IF)
     {
         TMR5IF = 0;
@@ -5287,29 +5320,21 @@ void main(void)
     init_TMR1();
     init_PWM();
     init_QEI();
+    init_I2C();
     init_UART();
     init_ISR();
     GPREG.DIRCTRL = 1;
 
-    uint8_t counter = 0;
-
     while(1)
     {
+
+        ref_vel = dataToVel(i2cData);
+
         if(1 == GPREG.STCTRL)
         {
-
-
-
-
-
-
             write_PWM(calculatePWM(ref_vel));
 
-
-
-
             string_vel = int2char(vel);
-
             TXIE = 1;
 
             if(1 == GPREG.DIRCTRL)
@@ -5445,6 +5470,10 @@ void init_ISR()
     TMR5IP = 1;
 
 
+    SSPIE = 1;
+    SSPIP = 1;
+
+
     TXIE = 0;
     TXIP = 1;
     TXIF = 0;
@@ -5465,4 +5494,30 @@ uint8_t * int2char(uint16_t number)
     }
 
     return string;
+}
+
+void init_I2C()
+{
+    TRISC5 = 1;
+    TRISC4 = 1;
+    SSPCON =0b00110110;
+
+    SSPADD = 0x46;
+}
+
+uint16_t dataToVel(uint8_t data)
+{
+    uint16_t vel = (uint16_t)data*10;
+
+    if(10u >= vel)
+    {
+        vel = 0;
+    }
+
+    if(800u < vel)
+    {
+        vel = 800u;
+    }
+
+    return vel;
 }

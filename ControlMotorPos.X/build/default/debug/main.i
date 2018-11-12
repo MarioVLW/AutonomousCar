@@ -5246,7 +5246,7 @@ uint8_t i2cData;
 void __attribute__((picinterrupt(""))) ISR_high(void)
 {
 
-     if(SSPIE == 1 && SSPIF == 1)
+    if(SSPIE == 1 && SSPIF == 1)
     {
 
         if(SSPOV == 1 || WCOL == 1)
@@ -5273,7 +5273,7 @@ void __attribute__((picinterrupt(""))) ISR_high(void)
         }
 
         SSPIF = 0;
-}
+    }
 
     if(1 == TMR1IE && 1 == TMR1IF)
     {

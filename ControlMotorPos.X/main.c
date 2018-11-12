@@ -66,7 +66,7 @@ uint8_t i2cData;
 void __interrupt () ISR_high(void)
 {
     
-     if(SSPIE == 1 && SSPIF == 1)
+    if(SSPIE == 1 && SSPIF == 1)
     {
         //CKP = 0; //hold clock
         if(SSPOV == 1 || WCOL == 1)
@@ -93,7 +93,7 @@ void __interrupt () ISR_high(void)
         }
         
         SSPIF = 0;
-}//end I2C communication
+    }//end I2C communication
     
     if(1 == TMR1IE && 1 == TMR1IF)
     {
