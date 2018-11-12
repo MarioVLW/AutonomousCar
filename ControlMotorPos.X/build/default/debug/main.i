@@ -5195,7 +5195,7 @@ typedef char char_t;
 typedef unsigned char uint8_t;
 typedef signed char int8_t;
 # 4 "main.c" 2
-# 21 "main.c"
+# 19 "main.c"
 int32_t calculatePWM(int8_t setpoint);
 void write_PWM(uint16_t dutyCycle);
 void init_QEI(void);
@@ -5206,6 +5206,7 @@ void init_TMR1(void);
 void init_UART(void);
 uint8_t * int2char(uint16_t number);
 void init_I2C(void);
+uint16_t angleToCounts(uint8_t data);
 
 
 struct
@@ -5228,8 +5229,7 @@ struct Control
     int32_t Kd;
 } PID;
 
-uint16_t ref_pos = 5300;
-uint16_t input = 1022;
+uint16_t ref_pos = 0;
 int16_t error = 0;
 int16_t error_ant = 0;
 int32_t suma_error = 0;
@@ -5237,7 +5237,6 @@ uint16_t pos = 0;
 uint16_t pos_ant = 0;
 int32_t volt = 0;
 int32_t velocity = 0;
-uint8_t pos_degree = 0;
 
 uint8_t *string_pos;
 int8_t cursor = 0;
@@ -5318,12 +5317,13 @@ void main(void)
     init_QEI();
     init_UART();
     init_ISR();
-    GPREG.DIRCTRL = 1;
-
-    uint8_t counter = 0;
+    GPREG.STCTRL = 1;
 
     while(1)
     {
+
+        ref_pos = angleToCounts(i2cData);
+
         if(1 == GPREG.STCTRL)
         {
             write_PWM(calculatePWM(ref_pos));
@@ -5423,9 +5423,9 @@ void init_QEI()
     TRISA4 = 1;
     TRISA5 = 1;
 
-    POSCNTL = 6300;
-    POSCNTH = 6300>>8;
-    pos = 6300;
+    POSCNTL = 4200;
+    POSCNTH = 4200>>8;
+    pos = 4200;
 
     MAXCNTL = 8400;
     MAXCNTH = 8400>>8;
@@ -5485,4 +5485,24 @@ uint8_t * int2char(uint16_t number)
     }
 
     return string;
+}
+
+uint16_t angleToCounts(uint8_t data)
+{
+    uint8_t angle = data%100;
+    uint16_t counts = (uint16_t)(((uint32_t)angle*8400)/360);
+
+    if(1050 < counts)
+    {
+        counts = 1050;
+    }
+
+    if(data / 100 == 0)
+    {
+        counts = 4200 - counts;
+    } else {
+        counts = 4200 + counts;
+    }
+
+    return counts;
 }
