@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <executable name="dist/default/production\ControlMotorVel.X.production.hex">
+  <executable name="dist/default/production\ControlMotorPos.X.production.hex">
     <memory name="program">
       <units>bytes</units>
       <length>16384</length>
-      <used>2602</used>
-      <free>13782</free>
+      <used>3152</used>
+      <free>13232</free>
     </memory>
     <memory name="data">
       <units>bytes</units>

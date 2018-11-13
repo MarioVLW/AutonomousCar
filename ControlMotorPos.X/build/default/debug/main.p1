@@ -1448,8 +1448,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 271:     SSPCON =0b00110110;
 [e = _SSPCON -> -> 54 `i `uc ]
 "273
-[; ;main.c: 273:     SSPADD = 0x46;
-[e = _SSPADD -> -> 70 `i `uc ]
+[; ;main.c: 273:     SSPADD = 0x86;
+[e = _SSPADD -> -> 134 `i `uc ]
 "274
 [; ;main.c: 274: }
 [e :UE 343 ]

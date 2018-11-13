@@ -5450,7 +5450,7 @@ void init_I2C()
     TRISC4 = 1;
     SSPCON =0b00110110;
 
-    SSPADD = 0x46;
+    SSPADD = 0x86;
 }
 
 void init_ISR()

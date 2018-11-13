@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC18 LITE Macro Assembler V2.00 build -1524193055 
-                                                                                               Sun Nov 11 23:42:47 2018
+                                                                                               Mon Nov 12 23:36:46 2018
 
 Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 20180527130849
      1  0000                     
@@ -780,7 +780,7 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    686                           __CFG_EBTR3$OFF equ 0x0
    687  0000                     global __CFG_EBTRB$OFF
    688                           __CFG_EBTRB$OFF equ 0x0
-   689  0000                     	file	"C:\Users\MarioVL\AppData\Local\Temp\sbto."
+   689  0000                     	file	"C:\Users\MarioVL\AppData\Local\Temp\sboc."
    690                           	line	#
    691                           psect	cinit,class=CODE,delta=1,reloc=2
    692                           global __pcinit
@@ -829,7 +829,7 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
    735  000050                            ds      1
    736  000050                     int2char@string:
    737  000051                            ds      5
-   738  000051                     	file	"C:\Users\MarioVL\AppData\Local\Temp\sbto."
+   738  000051                     	file	"C:\Users\MarioVL\AppData\Local\Temp\sboc."
    739                           	line	#
    740                           psect	cinit
    741                           ; Clear objects allocated to COMRAM (40 bytes)
@@ -2562,9 +2562,9 @@ Microchip Technology Omniscient Code Generator v2.00 (Free mode) build 201805271
   2466                           	movlw	low(036h)
   2467  000C4A  0E36               	movwf	((c:4038)),c	;volatile
   2468  000C4C  6EC6               	line	273
-  2469                           ;main.c: 273:     SSPADD = 0x46;
-  2470                           	movlw	low(046h)
-  2471  000C4E  0E46               	movwf	((c:4040)),c	;volatile
+  2469                           ;main.c: 273:     SSPADD = 0x86;
+  2470                           	movlw	low(086h)
+  2471  000C4E  0E86               	movwf	((c:4040)),c	;volatile
   2472  000C50  6EC8               	line	274
   2473                           	
   2474                           l202:
@@ -4935,7 +4935,7 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V2.00 build -1524193055 
-Symbol Table                                                                                   Sun Nov 11 23:42:47 2018
+Symbol Table                                                                                   Mon Nov 12 23:36:46 2018
 
                      _BF 007E38             ___awdiv@sign 000A      ___wmul@multiplicand 0007  
            __CFG_CP0$OFF 000000             __CFG_CP1$OFF 000000             __CFG_CP2$OFF 000000  

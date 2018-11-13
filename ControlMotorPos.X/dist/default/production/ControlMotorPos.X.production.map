@@ -3,16 +3,16 @@ Microchip MPLAB XC8 Compiler V2.00 ()
 Linker command line:
 
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v2.00\pic\dat\en_msgs.txt \
-  -cs -h+dist/default/debug\ControlMotorPos.X.debug.sym \
-  --cmf=dist/default/debug\ControlMotorPos.X.debug.cmf -z -Q18F4431 \
-  -oC:\Users\MarioVL\AppData\Local\Temp\sboc.2 --defsym=__MPLAB_BUILD=1 \
-  -Mdist/default/debug/ControlMotorPos.X.debug.map -E1 -ver=XC8 \
-  --acfsm=1493 -ASTACK=060h-02f3h -pstack=STACK -ACODE=00h-03DBFh \
-  -ACONST=00h-03DBFh -ASMALLCONST=0300h-03FFhx58,03D00h-03DBFh \
-  -AMEDIUMCONST=0300h-03DBFh -ACOMRAM=01h-05Fh -AABS1=00h-02F3h \
-  -ABIGRAM=01h-02F3h -ARAM=060h-0FFh,0100h-01FFh,0200h-02F3h \
-  -ABANK0=060h-0FFh -ABANK1=0100h-01FFh -ABANK2=0200h-02F3h \
-  -ASFR=0F60h-0F9Bh,0F9Dh-0FD3h,0FD5h-0FDAh,0FE0h-0FE2h,0FE8h-0FEAh,0FF0h-0FFCh \
+  -cs -h+dist/default/production\ControlMotorPos.X.production.sym \
+  --cmf=dist/default/production\ControlMotorPos.X.production.cmf -z \
+  -Q18F4431 -oC:\Users\MarioVL\AppData\Local\Temp\s4qk.2 \
+  --defsym=__MPLAB_BUILD=1 \
+  -Mdist/default/production/ControlMotorPos.X.production.map -E1 -ver=XC8 \
+  --acfsm=1493 -ASTACK=060h-02ffh -pstack=STACK -ACODE=00h-03FFFh \
+  -ACONST=00h-03FFFh -ASMALLCONST=0300h-03FFhx61 -AMEDIUMCONST=0300h-03FFFh \
+  -ACOMRAM=01h-05Fh -AABS1=00h-02FFh -ABIGRAM=01h-02FFh \
+  -ARAM=060h-0FFh,0100h-01FFhx2 -ABANK0=060h-0FFh -ABANK1=0100h-01FFh \
+  -ABANK2=0200h-02FFh -ASFR=0F60h-0FFFh \
   -preset_vec=00h,intcode=08h,intcodelo,powerup,init -pramtop=0300h \
   -psmallconst=SMALLCONST -pmediumconst=MEDIUMCONST -pconst=CONST \
   -AFARRAM=00h-00h -ACONFIG=0300000h-030000Dh -pconfig=CONFIG \
@@ -22,8 +22,8 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\MarioVL\AppData\Local\Temp\sboc.o \
-  dist/default/debug\ControlMotorPos.X.debug.o 
+  C:\Users\MarioVL\AppData\Local\Temp\s4qk.o \
+  dist/default/production\ControlMotorPos.X.production.o 
 
 Object code version is 3.11
 
@@ -35,12 +35,12 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\MarioVL\AppData\Local\Temp\sboc.o
+C:\Users\MarioVL\AppData\Local\Temp\s4qk.o
                 init                                15E      15E        4        4       0
                 reset_vec                             0        0        4        0       0
                 idloc                            200000   200000        8   200000       0
                 config                           300000   300000        E   300000       0
-dist/default/debug\ControlMotorPos.X.debug.o
+dist/default/production\ControlMotorPos.X.production.o
                 intcode                               8        8      156        4       0
                 temp                                 5A       5A        1        1       1
                 text19                              53E      53E       EC        4       0
@@ -149,24 +149,19 @@ UNUSED ADDRESS RANGES
         Name                Unused          Largest block    Delta
         BANK0            000060-0000FF               A0
         BANK1            000100-0001FF              100
-        BANK2            000200-0002F3               F4
-        BIGRAM           00005B-0002F3              299
+        BANK2            000200-0002FF              100
+        BIGRAM           00005B-0002FF              2A5
         CODE             000004-000007                4
-                         000C54-003DBF             316C
+                         000C54-003FFF             33AC
         COMRAM           00005B-00005F                5
         CONST            000004-000007                4
-                         000C54-003DBF             316C
+                         000C54-003FFF             33AC
         EEDATA           F00000-F000FF              100
-        MEDIUMCONST      000C54-003DBF             316C
-        RAM              000060-0002F3              100
-        SFR              000F60-000F9B               3C
-                         000F9D-000FD3               37
-                         000FD5-000FDA                6
-                         000FE0-000FE2                3
-                         000FE8-000FEA                3
-                         000FF0-000FFC                D
-        SMALLCONST       000C54-003DBF              100
-        STACK            000060-0002F3              294
+        MEDIUMCONST      000C54-003FFF             33AC
+        RAM              000060-0002FF              100
+        SFR              000F60-000FFF               A0
+        SMALLCONST       000C54-003FFF              100
+        STACK            000060-0002FF              2A0
 
                                   Symbol Table
 
@@ -579,7 +574,7 @@ intlevel0                text         000000
 intlevel1                text         000000
 intlevel2                text         000000
 intlevel3                text         000000
-stackhi                  (abs)        0002F3
+stackhi                  (abs)        0002FF
 stacklo                  (abs)        000060
 start                    init         00015E
 start_initialization     cinit        000BE4

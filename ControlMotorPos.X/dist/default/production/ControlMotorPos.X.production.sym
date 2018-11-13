@@ -148,7 +148,7 @@ __Hdata 0 0 ABS 0
 __Ldata 0 0 ABS 0
 __CFG_EBTR3$OFF 0 0 ABS 0
 __size_of_init_UART 0 0 ABS 0
-stackhi 2F3 0 ABS 0
+stackhi 2FF 0 ABS 0
 ___awmod@sign A 0 COMRAM 1
 __Htemp 5B 0 COMRAM 1
 __Ltemp 5A 0 COMRAM 1
@@ -423,9 +423,9 @@ config 300000 30000D CONFIG 300000 0
 idloc 200000 200007 IDLOC 200000 0
 cstackCOMRAM 1 5A COMRAM 1 1
 %locals
-dist/default/debug\ControlMotorPos.X.debug.o
+dist/default/production\ControlMotorPos.X.production.o
 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4431.h
-C:\Users\MarioVL\AppData\Local\Temp\sboc.
+C:\Users\MarioVL\AppData\Local\Temp\s4qk.
 694 BE4 0 CODE 0
 696 BE4 0 CODE 0
 699 BE4 0 CODE 0

@@ -158,12 +158,22 @@ void main(void)
             if(1 == GPREG.DIRCTRL)
             {
                 //Counter clockwise positive turn
+               /*UNCOMMENT FOR THE LEFT WHEEL
                 LATA0 = 0;
                 LATA1 = 1;  
-            } else {
-                //Clockwise negative turn
+                */
+                /*COMMENT FOR THE LEFT WHEEL*/
                 LATA0 = 1;
                 LATA1 = 0;
+            } else {
+                //Clockwise negative turn
+                /*UNCOMMENT FOR THE LEFT WHEEL
+                LATA0 = 1;
+                LATA1 = 0;
+                 */
+                /*COMMENT FOR THE LEFT WHEEL*/
+                LATA0 = 0;
+                LATA1 = 1;
             }
 
             GPREG.STCTRL = 0;

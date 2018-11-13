@@ -5195,7 +5195,7 @@ typedef char char_t;
 typedef unsigned char uint8_t;
 typedef signed char int8_t;
 # 4 "main.c" 2
-# 17 "main.c"
+# 19 "main.c"
 int32_t calculatePWM(int8_t setpoint);
 void write_PWM(uint16_t dutyCycle);
 void init_QEI(void);
@@ -5206,7 +5206,7 @@ void init_TMR1(void);
 void init_UART(void);
 uint8_t * int2char(uint16_t number);
 void init_I2C(void);
-uint16_t dataToVel(uint8_t data);
+uint16_t angleToCounts(uint8_t data);
 
 
 struct
@@ -5229,16 +5229,16 @@ struct Control
     int32_t Kd;
 } PID;
 
-uint16_t ref_vel = 0;
+uint16_t ref_pos = 0;
 int16_t error = 0;
 int16_t error_ant = 0;
-uint16_t vel = 0;
-uint16_t vel_ant = 0;
 int32_t suma_error = 0;
+uint16_t pos = 0;
+uint16_t pos_ant = 0;
 int32_t volt = 0;
-int32_t aceleracion = 0;
+int32_t velocity = 0;
 
-uint8_t *string_vel;
+uint8_t *string_pos;
 int8_t cursor = 0;
 
 uint8_t i2cData;
@@ -5275,12 +5275,6 @@ void __attribute__((picinterrupt(""))) ISR_high(void)
         SSPIF = 0;
     }
 
-    if(1 == TMR5IE && 1 == TMR5IF)
-    {
-        TMR5IF = 0;
-        GPREG.STPCRL = 1;
-    }
-
     if(1 == TMR1IE && 1 == TMR1IF)
     {
         GPREG.STCTRL = 1;
@@ -5296,7 +5290,7 @@ void __attribute__((picinterrupt(""))) ISR_high(void)
         {
             TXREG = 0x2C;
         } else {
-            TXREG = *(string_vel + cursor);
+            TXREG = *(string_pos + cursor);
         }
         cursor++;
         if(5 < cursor)
@@ -5312,51 +5306,41 @@ void main(void)
 {
     OSCCON = 0x70;
 
-    PID.Kp = 48087;
-    PID.Ki = 64120;
-    PID.Kd = 90;
+    PID.Kp = 5310;
+    PID.Ki = 2655;
+    PID.Kd = 2664;
 
     init_VNHIO();
+    init_I2C();
     init_TMR1();
     init_PWM();
     init_QEI();
-    init_I2C();
     init_UART();
     init_ISR();
-    GPREG.DIRCTRL = 1;
+    GPREG.STCTRL = 1;
 
     while(1)
     {
 
-        ref_vel = dataToVel(i2cData);
+        ref_pos = angleToCounts(i2cData);
 
         if(1 == GPREG.STCTRL)
         {
-            write_PWM(calculatePWM(ref_vel));
-
-            string_vel = int2char(vel);
-            TXIE = 1;
+            write_PWM(calculatePWM(ref_pos));
 
             if(1 == GPREG.DIRCTRL)
             {
 
-
-
-
-
+                LATA0 = 0;
+                LATA1 = 1;
+            } else {
 
                 LATA0 = 1;
                 LATA1 = 0;
-            } else {
-
-
-
-
-
-
-                LATA0 = 0;
-                LATA1 = 1;
             }
+
+            string_pos = int2char(pos);
+            TXIE = 1;
 
             GPREG.STCTRL = 0;
             TMR1ON = 1;
@@ -5368,40 +5352,33 @@ void main(void)
 int32_t calculatePWM(int8_t setpoint)
 {
 
-    if(0 == GPREG.STPCRL)
-    {
-        vel = 0;
-        vel = VELRH;
-        vel <<= 8;
-        vel |= VELRL;
+    pos = POSCNTH;
+    pos <<= 8;
+    pos |= POSCNTL;
 
-        vel = 571420u/vel;
-
-    } else {
-        vel = 0;
-        GPREG.STPCRL = 0;
-    }
-
-    error = (ref_vel - vel);
-    suma_error += (50*(int32_t)error)/1000;
-    aceleracion = (int32_t)(error - error_ant)*20;
-    volt = ((PID.Kp * (int32_t)error) + ((PID.Ki * suma_error)) + (PID.Kd*aceleracion));
-    volt /= 10;
+    error = (ref_pos - pos);
+    suma_error += 50*error;
+    suma_error /= 1000;
+    velocity = (int32_t)(error - error_ant)*20;
+    volt = (PID.Kp * error) + (PID.Ki * suma_error) + (PID.Kd*velocity);
+    volt /= 100;
     error_ant = error;
 
-
-    if(0 > volt)
+    if(volt < 0)
     {
-        volt = 0;
+        GPREG.DIRCTRL = 0;
+        volt = ~volt;
+        volt++;
+    } else {
+        GPREG.DIRCTRL = 1;
     }
 
-    if(800 < volt)
+    if(volt > 6300)
     {
-        volt = 800;
+        volt = 6300;
     }
 
-    volt = (volt*1022u)/800;
-
+    volt = (volt*1022)/6300;
 
     return volt;
 }
@@ -5410,7 +5387,7 @@ void init_TMR1(void)
 {
 
     T1CON = 0xF9;
-    TMR1 = 53035;
+    TMR1 =65485;
 }
 
 void init_VNHIO()
@@ -5443,17 +5420,17 @@ void write_PWM(uint16_t dutyCycle)
 
 void init_QEI()
 {
-    CAP1BUFL = 0;
-    CAP1BUFH = 0;
     TRISA4 = 1;
     TRISA5 = 1;
 
+    POSCNTL = 4200;
+    POSCNTH = 4200>>8;
+    pos = 4200;
 
-    T5CON = 0x80;
-    QEICON = 0x19;
-    PR5 = 0xFFFF;
-    CAP1REN = 1;
-    TMR5ON = 1;
+    MAXCNTL = 8400;
+    MAXCNTH = 8400>>8;
+
+    QEICON = 0x98;
 
 }
 
@@ -5467,17 +5444,21 @@ void init_UART()
     SPBRG = 12;
 }
 
+void init_I2C()
+{
+    TRISC5 = 1;
+    TRISC4 = 1;
+    SSPCON =0b00110110;
+
+    SSPADD = 0x80;
+}
+
 void init_ISR()
 {
 
     TMR1IF = 0;
     TMR1IE = 1;
     TMR1IP = 1;
-
-
-    TMR5IF = 0;
-    TMR5IE = 1;
-    TMR5IP = 1;
 
 
     SSPIE = 1;
@@ -5506,28 +5487,22 @@ uint8_t * int2char(uint16_t number)
     return string;
 }
 
-void init_I2C()
+uint16_t angleToCounts(uint8_t data)
 {
-    TRISC5 = 1;
-    TRISC4 = 1;
-    SSPCON =0b00110110;
+    uint8_t angle = data%100;
+    uint16_t counts = (uint16_t)(((uint32_t)angle*8400)/360);
 
-    SSPADD = 0x46;
-}
-
-uint16_t dataToVel(uint8_t data)
-{
-    uint16_t vel = (uint16_t)data*10;
-
-    if(10u >= vel)
+    if(1050 < counts)
     {
-        vel = 0;
+        counts = 1050;
     }
 
-    if(800u < vel)
+    if(data / 100 == 0)
     {
-        vel = 800u;
+        counts = 4200 - counts;
+    } else {
+        counts = 4200 + counts;
     }
 
-    return vel;
+    return counts;
 }
