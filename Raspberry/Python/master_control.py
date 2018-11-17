@@ -5,11 +5,13 @@ import i2cComm
 import time
 
 CONSTANT = {
-    "COEFFICIENT_FRICTION" : 0,    # Coefficient of friction between the wheel and the floor
+    "COEFFICIENT_FRICTION" : 0.6,  # Coefficient of friction between the wheel and the floor 0.6 to 0.9
     "GRAVITY" : 9.81,              # Gravity value in m/s^2
     "WHEEL_RADIUS" : 0,            # Wheel radius in meters
     "CAR_LENGTH" : 0,              # Car lenght distance in meters
-    "CAR_WIDTH" : 0                # Car width distance in meters
+    "CAR_WIDTH" : 0,               # Car width distance in meters
+    "MAX_VEL_RPM" : 80,            # Maximum angular velocity in RPM
+    "PINION_RADIUS" : 0            # Radius of the pinion in meters
 }
 
 # Global variables
