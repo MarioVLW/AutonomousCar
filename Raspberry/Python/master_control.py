@@ -23,11 +23,8 @@ GPIO.setmode(GPIO.BCM)
 
 try:
     # Instance of modules
-    dynamic = carDynamic.carDynamic()
-    dynamic.__init__(CONSTANT_DICT=CONSTANT)
-
-    i2c = i2cComm.i2cCommunication()
-    i2c.__init__(addressRightWheel=0x20, addressLeftWheel=0x23, addressRack=0x40)
+    dynamic = carDynamic.carDynamic(CONSTANT)
+    i2c = i2cComm.i2cCommunication(addressRightWheel=0x20, addressLeftWheel=0x23, addressRack=0x40)
 
     while True:
         dynamic.updateRackPosition(isTurnRight=isTurnRight, angle=angleOffset)
