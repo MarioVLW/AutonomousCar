@@ -14,7 +14,7 @@
 #define ENCODER_COUNTS_MAX 1050
 #define PWM_PERIOD 255u
 #define ASCII_COMMA 0x2C
-#define PICADD 0x86
+#define PICADD 0x80
 
 int32_t calculatePWM(int8_t setpoint);
 void write_PWM(uint16_t dutyCycle);

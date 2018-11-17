@@ -38,7 +38,7 @@ cstackCOMRAM COMRAM 1 1 1 2D 1
 temp COMRAM 1 5A 5A 1 1
 intcode CODE 0 8 8 156 1
 bssCOMRAM COMRAM 1 2E 2E 28 1
-$C:\Users\MarioVL\AppData\Local\Temp\sboc.o
+$C:\Users\MarioVL\AppData\Local\Temp\sdv8.o
 idloc IDLOC 0 200000 200000 8 1
 init CODE 0 15E 15E 4 1
 reset_vec CODE 0 0 0 4 1
@@ -419,20 +419,20 @@ A6A text1 CODE >308:E:\Documentos\University\Ago-Dic(2018)\PIM\Programas\Control
 8A4 text0 CODE >167:E:\Documentos\University\Ago-Dic(2018)\PIM\Programas\ControlMotorPos.X\main.c
 8A8 text0 CODE >168:E:\Documentos\University\Ago-Dic(2018)\PIM\Programas\ControlMotorPos.X\main.c
 8AC text0 CODE >170:E:\Documentos\University\Ago-Dic(2018)\PIM\Programas\ControlMotorPos.X\main.c
-BE4 cinit CODE >694:C:\Users\MarioVL\AppData\Local\Temp\sboc.
-BE4 cinit CODE >696:C:\Users\MarioVL\AppData\Local\Temp\sboc.
-BE4 cinit CODE >699:C:\Users\MarioVL\AppData\Local\Temp\sboc.
-BE4 cinit CODE >744:C:\Users\MarioVL\AppData\Local\Temp\sboc.
-BE8 cinit CODE >745:C:\Users\MarioVL\AppData\Local\Temp\sboc.
-BEA cinit CODE >746:C:\Users\MarioVL\AppData\Local\Temp\sboc.
-BEA cinit CODE >747:C:\Users\MarioVL\AppData\Local\Temp\sboc.
-BEC cinit CODE >748:C:\Users\MarioVL\AppData\Local\Temp\sboc.
-BEE cinit CODE >749:C:\Users\MarioVL\AppData\Local\Temp\sboc.
-BF0 cinit CODE >755:C:\Users\MarioVL\AppData\Local\Temp\sboc.
-BF0 cinit CODE >757:C:\Users\MarioVL\AppData\Local\Temp\sboc.
-BF2 cinit CODE >758:C:\Users\MarioVL\AppData\Local\Temp\sboc.
-BF4 cinit CODE >759:C:\Users\MarioVL\AppData\Local\Temp\sboc.
-BF6 cinit CODE >760:C:\Users\MarioVL\AppData\Local\Temp\sboc.
+BE4 cinit CODE >694:C:\Users\MarioVL\AppData\Local\Temp\sdv8.
+BE4 cinit CODE >696:C:\Users\MarioVL\AppData\Local\Temp\sdv8.
+BE4 cinit CODE >699:C:\Users\MarioVL\AppData\Local\Temp\sdv8.
+BE4 cinit CODE >744:C:\Users\MarioVL\AppData\Local\Temp\sdv8.
+BE8 cinit CODE >745:C:\Users\MarioVL\AppData\Local\Temp\sdv8.
+BEA cinit CODE >746:C:\Users\MarioVL\AppData\Local\Temp\sdv8.
+BEA cinit CODE >747:C:\Users\MarioVL\AppData\Local\Temp\sdv8.
+BEC cinit CODE >748:C:\Users\MarioVL\AppData\Local\Temp\sdv8.
+BEE cinit CODE >749:C:\Users\MarioVL\AppData\Local\Temp\sdv8.
+BF0 cinit CODE >755:C:\Users\MarioVL\AppData\Local\Temp\sdv8.
+BF0 cinit CODE >757:C:\Users\MarioVL\AppData\Local\Temp\sdv8.
+BF2 cinit CODE >758:C:\Users\MarioVL\AppData\Local\Temp\sdv8.
+BF4 cinit CODE >759:C:\Users\MarioVL\AppData\Local\Temp\sdv8.
+BF6 cinit CODE >760:C:\Users\MarioVL\AppData\Local\Temp\sdv8.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -457,7 +457,7 @@ __size_of_init_ISR 0 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
 __size_of_init_PWM 0 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
 __size_of_init_QEI 0 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/debug\ControlMotorPos.X.debug.o
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\MarioVL\AppData\Local\Temp\sboc.o
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\MarioVL\AppData\Local\Temp\sdv8.o
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/debug\ControlMotorPos.X.debug.o
 __CFG_MCLRE$ON 0 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
 _BF 7E38 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
@@ -468,11 +468,11 @@ _TXIE 7CEC 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
 _TXIF 7CF4 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
 _TXIP 7CFC 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
 _WCOL 7E37 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
-___sp 0 0 STACK 2 stack C:\Users\MarioVL\AppData\Local\Temp\sboc.o
+___sp 0 0 STACK 2 stack C:\Users\MarioVL\AppData\Local\Temp\sdv8.o
 _main 7E8 0 CODE 0 text0 dist/default/debug\ControlMotorPos.X.debug.o
 _volt 3E 0 COMRAM 1 bssCOMRAM dist/default/debug\ControlMotorPos.X.debug.o
 btemp 5A 0 COMRAM 1 temp dist/default/debug\ControlMotorPos.X.debug.o
-start 15E 0 CODE 0 init C:\Users\MarioVL\AppData\Local\Temp\sboc.o
+start 15E 0 CODE 0 init C:\Users\MarioVL\AppData\Local\Temp\sdv8.o
 __size_of___aldiv 0 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
 __size_of___awdiv 0 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
 __size_of___awmod 0 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
@@ -492,11 +492,11 @@ ttemp5 5B 0 COMRAM 1 temp dist/default/debug\ControlMotorPos.X.debug.o
 ttemp6 5E 0 COMRAM 1 temp dist/default/debug\ControlMotorPos.X.debug.o
 ttemp7 62 0 COMRAM 1 temp dist/default/debug\ControlMotorPos.X.debug.o
 __LnvCOMRAM 0 0 ABS 0 nvCOMRAM dist/default/debug\ControlMotorPos.X.debug.o
-__accesstop 60 0 ABS 0 - C:\Users\MarioVL\AppData\Local\Temp\sboc.o
-intlevel0 0 0 CODE 0 text C:\Users\MarioVL\AppData\Local\Temp\sboc.o
-intlevel1 0 0 CODE 0 text C:\Users\MarioVL\AppData\Local\Temp\sboc.o
-intlevel2 0 0 CODE 0 text C:\Users\MarioVL\AppData\Local\Temp\sboc.o
-intlevel3 0 0 CODE 0 text C:\Users\MarioVL\AppData\Local\Temp\sboc.o
+__accesstop 60 0 ABS 0 - C:\Users\MarioVL\AppData\Local\Temp\sdv8.o
+intlevel0 0 0 CODE 0 text C:\Users\MarioVL\AppData\Local\Temp\sdv8.o
+intlevel1 0 0 CODE 0 text C:\Users\MarioVL\AppData\Local\Temp\sdv8.o
+intlevel2 0 0 CODE 0 text C:\Users\MarioVL\AppData\Local\Temp\sdv8.o
+intlevel3 0 0 CODE 0 text C:\Users\MarioVL\AppData\Local\Temp\sdv8.o
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/debug\ControlMotorPos.X.debug.o
 _init_I2C C46 0 CODE 0 text11 dist/default/debug\ControlMotorPos.X.debug.o
 _init_ISR C10 0 CODE 0 text10 dist/default/debug\ControlMotorPos.X.debug.o
@@ -524,8 +524,8 @@ _ANSEL0 FB8 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
 _ANSEL1 FB9 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
 _error_ant 4A 0 COMRAM 1 bssCOMRAM dist/default/debug\ControlMotorPos.X.debug.o
 ___awdiv@dividend 5 0 COMRAM 1 cstackCOMRAM dist/default/debug\ControlMotorPos.X.debug.o
-___inthi_sp 0 0 STACK 2 stack C:\Users\MarioVL\AppData\Local\Temp\sboc.o
-___intlo_sp 0 0 STACK 2 stack C:\Users\MarioVL\AppData\Local\Temp\sboc.o
+___inthi_sp 0 0 STACK 2 stack C:\Users\MarioVL\AppData\Local\Temp\sdv8.o
+___intlo_sp 0 0 STACK 2 stack C:\Users\MarioVL\AppData\Local\Temp\sdv8.o
 __size_of_angleToCounts 0 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
 _CCPR1L FBE 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
 _i2cData 4E 0 COMRAM 1 bssCOMRAM dist/default/debug\ControlMotorPos.X.debug.o
@@ -604,7 +604,7 @@ ___lwdiv@counter B 0 COMRAM 1 cstackCOMRAM dist/default/debug\ControlMotorPos.X.
 __CFG_PWM4MX$RB5 0 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/debug\ControlMotorPos.X.debug.o
 __Hbigram 0 0 ABS 0 bigram dist/default/debug\ControlMotorPos.X.debug.o
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\MarioVL\AppData\Local\Temp\sboc.o
+__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\MarioVL\AppData\Local\Temp\sdv8.o
 __Hcomram 0 0 ABS 0 comram dist/default/debug\ControlMotorPos.X.debug.o
 __Hconfig 30000E 0 CONFIG 0 config dist/default/debug\ControlMotorPos.X.debug.o
 int2char@string 51 0 COMRAM 1 bssCOMRAM dist/default/debug\ControlMotorPos.X.debug.o
@@ -731,8 +731,8 @@ __Lfardata 0 0 FARRAM 0 fardata dist/default/debug\ControlMotorPos.X.debug.o
 ?_calculatePWM 1F 0 COMRAM 1 cstackCOMRAM dist/default/debug\ControlMotorPos.X.debug.o
 __end_of_write_PWM BA6 0 CODE 0 text9 dist/default/debug\ControlMotorPos.X.debug.o
 __size_of_write_PWM 0 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o
-stackhi 2F3 0 ABS 0 - C:\Users\MarioVL\AppData\Local\Temp\sboc.o
-stacklo 60 0 ABS 0 - C:\Users\MarioVL\AppData\Local\Temp\sboc.o
+stackhi 2F3 0 ABS 0 - C:\Users\MarioVL\AppData\Local\Temp\sdv8.o
+stacklo 60 0 ABS 0 - C:\Users\MarioVL\AppData\Local\Temp\sdv8.o
 __Lintcode 8 0 CODE 0 intcode dist/default/debug\ControlMotorPos.X.debug.o
 __Lintret 0 0 ABS 0 intret dist/default/debug\ControlMotorPos.X.debug.o
 __Lirdata 0 0 CODE 0 irdata dist/default/debug\ControlMotorPos.X.debug.o
@@ -784,7 +784,7 @@ __Ltext16 0 0 ABS 0 text16 dist/default/debug\ControlMotorPos.X.debug.o
 __Ltext17 0 0 ABS 0 text17 dist/default/debug\ControlMotorPos.X.debug.o
 __Ltext18 0 0 ABS 0 text18 dist/default/debug\ControlMotorPos.X.debug.o
 __Ltext19 0 0 ABS 0 text19 dist/default/debug\ControlMotorPos.X.debug.o
-__ramtop 300 0 RAM 0 ramtop C:\Users\MarioVL\AppData\Local\Temp\sboc.o
+__ramtop 300 0 RAM 0 ramtop C:\Users\MarioVL\AppData\Local\Temp\sdv8.o
 ___aldiv@dividend 11 0 COMRAM 1 cstackCOMRAM dist/default/debug\ControlMotorPos.X.debug.o
 _init_VNHIO C26 0 CODE 0 text4 dist/default/debug\ControlMotorPos.X.debug.o
 __CFG_PWMPIN$OFF 0 0 ABS 0 - dist/default/debug\ControlMotorPos.X.debug.o

@@ -5,7 +5,7 @@ MATLAB/
 Microchip/
 
 #ignore Raspberry
-Raspberry/
-
-
-
+Raspberry/key_load_public
+Raspberry/key.ppk
+Raspberry/Python/*.txt
+Raspberry/Python/.idea

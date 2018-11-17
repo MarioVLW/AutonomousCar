@@ -38,7 +38,7 @@ cstackCOMRAM COMRAM 1 1 1 2D 1
 temp COMRAM 1 5A 5A 1 1
 intcode CODE 0 8 8 156 1
 bssCOMRAM COMRAM 1 2E 2E 28 1
-$C:\Users\MarioVL\AppData\Local\Temp\s4qk.o
+$C:\Users\MarioVL\AppData\Local\Temp\s41g.o
 idloc IDLOC 0 200000 200000 8 1
 init CODE 0 15E 15E 4 1
 reset_vec CODE 0 0 0 4 1
@@ -414,20 +414,20 @@ A6A text1 CODE >308:E:\Documentos\University\Ago-Dic(2018)\PIM\Programas\Control
 8A4 text0 CODE >167:E:\Documentos\University\Ago-Dic(2018)\PIM\Programas\ControlMotorPos.X\main.c
 8A8 text0 CODE >168:E:\Documentos\University\Ago-Dic(2018)\PIM\Programas\ControlMotorPos.X\main.c
 8AC text0 CODE >170:E:\Documentos\University\Ago-Dic(2018)\PIM\Programas\ControlMotorPos.X\main.c
-BE4 cinit CODE >694:C:\Users\MarioVL\AppData\Local\Temp\s4qk.
-BE4 cinit CODE >696:C:\Users\MarioVL\AppData\Local\Temp\s4qk.
-BE4 cinit CODE >699:C:\Users\MarioVL\AppData\Local\Temp\s4qk.
-BE4 cinit CODE >744:C:\Users\MarioVL\AppData\Local\Temp\s4qk.
-BE8 cinit CODE >745:C:\Users\MarioVL\AppData\Local\Temp\s4qk.
-BEA cinit CODE >746:C:\Users\MarioVL\AppData\Local\Temp\s4qk.
-BEA cinit CODE >747:C:\Users\MarioVL\AppData\Local\Temp\s4qk.
-BEC cinit CODE >748:C:\Users\MarioVL\AppData\Local\Temp\s4qk.
-BEE cinit CODE >749:C:\Users\MarioVL\AppData\Local\Temp\s4qk.
-BF0 cinit CODE >755:C:\Users\MarioVL\AppData\Local\Temp\s4qk.
-BF0 cinit CODE >757:C:\Users\MarioVL\AppData\Local\Temp\s4qk.
-BF2 cinit CODE >758:C:\Users\MarioVL\AppData\Local\Temp\s4qk.
-BF4 cinit CODE >759:C:\Users\MarioVL\AppData\Local\Temp\s4qk.
-BF6 cinit CODE >760:C:\Users\MarioVL\AppData\Local\Temp\s4qk.
+BE4 cinit CODE >694:C:\Users\MarioVL\AppData\Local\Temp\s41g.
+BE4 cinit CODE >696:C:\Users\MarioVL\AppData\Local\Temp\s41g.
+BE4 cinit CODE >699:C:\Users\MarioVL\AppData\Local\Temp\s41g.
+BE4 cinit CODE >744:C:\Users\MarioVL\AppData\Local\Temp\s41g.
+BE8 cinit CODE >745:C:\Users\MarioVL\AppData\Local\Temp\s41g.
+BEA cinit CODE >746:C:\Users\MarioVL\AppData\Local\Temp\s41g.
+BEA cinit CODE >747:C:\Users\MarioVL\AppData\Local\Temp\s41g.
+BEC cinit CODE >748:C:\Users\MarioVL\AppData\Local\Temp\s41g.
+BEE cinit CODE >749:C:\Users\MarioVL\AppData\Local\Temp\s41g.
+BF0 cinit CODE >755:C:\Users\MarioVL\AppData\Local\Temp\s41g.
+BF0 cinit CODE >757:C:\Users\MarioVL\AppData\Local\Temp\s41g.
+BF2 cinit CODE >758:C:\Users\MarioVL\AppData\Local\Temp\s41g.
+BF4 cinit CODE >759:C:\Users\MarioVL\AppData\Local\Temp\s41g.
+BF6 cinit CODE >760:C:\Users\MarioVL\AppData\Local\Temp\s41g.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -452,7 +452,7 @@ __size_of_init_ISR 0 0 ABS 0 - dist/default/production\ControlMotorPos.X.product
 __size_of_init_PWM 0 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
 __size_of_init_QEI 0 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\ControlMotorPos.X.production.o
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\MarioVL\AppData\Local\Temp\s4qk.o
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\MarioVL\AppData\Local\Temp\s41g.o
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\ControlMotorPos.X.production.o
 __CFG_MCLRE$ON 0 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
 _BF 7E38 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
@@ -463,11 +463,11 @@ _TXIE 7CEC 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
 _TXIF 7CF4 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
 _TXIP 7CFC 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
 _WCOL 7E37 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\MarioVL\AppData\Local\Temp\s4qk.o
+___sp 0 0 STACK 2 stack C:\Users\MarioVL\AppData\Local\Temp\s41g.o
 _main 7E8 0 CODE 0 text0 dist/default/production\ControlMotorPos.X.production.o
 _volt 3E 0 COMRAM 1 bssCOMRAM dist/default/production\ControlMotorPos.X.production.o
 btemp 5A 0 COMRAM 1 temp dist/default/production\ControlMotorPos.X.production.o
-start 15E 0 CODE 0 init C:\Users\MarioVL\AppData\Local\Temp\s4qk.o
+start 15E 0 CODE 0 init C:\Users\MarioVL\AppData\Local\Temp\s41g.o
 __size_of___aldiv 0 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
 __size_of___awdiv 0 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
 __size_of___awmod 0 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
@@ -487,11 +487,11 @@ ttemp5 5B 0 COMRAM 1 temp dist/default/production\ControlMotorPos.X.production.o
 ttemp6 5E 0 COMRAM 1 temp dist/default/production\ControlMotorPos.X.production.o
 ttemp7 62 0 COMRAM 1 temp dist/default/production\ControlMotorPos.X.production.o
 __LnvCOMRAM 0 0 ABS 0 nvCOMRAM dist/default/production\ControlMotorPos.X.production.o
-__accesstop 60 0 ABS 0 - C:\Users\MarioVL\AppData\Local\Temp\s4qk.o
-intlevel0 0 0 CODE 0 text C:\Users\MarioVL\AppData\Local\Temp\s4qk.o
-intlevel1 0 0 CODE 0 text C:\Users\MarioVL\AppData\Local\Temp\s4qk.o
-intlevel2 0 0 CODE 0 text C:\Users\MarioVL\AppData\Local\Temp\s4qk.o
-intlevel3 0 0 CODE 0 text C:\Users\MarioVL\AppData\Local\Temp\s4qk.o
+__accesstop 60 0 ABS 0 - C:\Users\MarioVL\AppData\Local\Temp\s41g.o
+intlevel0 0 0 CODE 0 text C:\Users\MarioVL\AppData\Local\Temp\s41g.o
+intlevel1 0 0 CODE 0 text C:\Users\MarioVL\AppData\Local\Temp\s41g.o
+intlevel2 0 0 CODE 0 text C:\Users\MarioVL\AppData\Local\Temp\s41g.o
+intlevel3 0 0 CODE 0 text C:\Users\MarioVL\AppData\Local\Temp\s41g.o
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\ControlMotorPos.X.production.o
 _init_I2C C46 0 CODE 0 text11 dist/default/production\ControlMotorPos.X.production.o
 _init_ISR C10 0 CODE 0 text10 dist/default/production\ControlMotorPos.X.production.o
@@ -519,8 +519,8 @@ _ANSEL0 FB8 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
 _ANSEL1 FB9 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
 _error_ant 4A 0 COMRAM 1 bssCOMRAM dist/default/production\ControlMotorPos.X.production.o
 ___awdiv@dividend 5 0 COMRAM 1 cstackCOMRAM dist/default/production\ControlMotorPos.X.production.o
-___inthi_sp 0 0 STACK 2 stack C:\Users\MarioVL\AppData\Local\Temp\s4qk.o
-___intlo_sp 0 0 STACK 2 stack C:\Users\MarioVL\AppData\Local\Temp\s4qk.o
+___inthi_sp 0 0 STACK 2 stack C:\Users\MarioVL\AppData\Local\Temp\s41g.o
+___intlo_sp 0 0 STACK 2 stack C:\Users\MarioVL\AppData\Local\Temp\s41g.o
 __size_of_angleToCounts 0 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
 _CCPR1L FBE 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
 _i2cData 4E 0 COMRAM 1 bssCOMRAM dist/default/production\ControlMotorPos.X.production.o
@@ -599,7 +599,7 @@ ___lwdiv@counter B 0 COMRAM 1 cstackCOMRAM dist/default/production\ControlMotorP
 __CFG_PWM4MX$RB5 0 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\ControlMotorPos.X.production.o
 __Hbigram 0 0 ABS 0 bigram dist/default/production\ControlMotorPos.X.production.o
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\MarioVL\AppData\Local\Temp\s4qk.o
+__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\MarioVL\AppData\Local\Temp\s41g.o
 __Hcomram 0 0 ABS 0 comram dist/default/production\ControlMotorPos.X.production.o
 __Hconfig 30000E 0 CONFIG 0 config dist/default/production\ControlMotorPos.X.production.o
 int2char@string 51 0 COMRAM 1 bssCOMRAM dist/default/production\ControlMotorPos.X.production.o
@@ -726,8 +726,8 @@ __Lfardata 0 0 FARRAM 0 fardata dist/default/production\ControlMotorPos.X.produc
 ?_calculatePWM 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\ControlMotorPos.X.production.o
 __end_of_write_PWM BA6 0 CODE 0 text9 dist/default/production\ControlMotorPos.X.production.o
 __size_of_write_PWM 0 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
-stackhi 2FF 0 ABS 0 - C:\Users\MarioVL\AppData\Local\Temp\s4qk.o
-stacklo 60 0 ABS 0 - C:\Users\MarioVL\AppData\Local\Temp\s4qk.o
+stackhi 2FF 0 ABS 0 - C:\Users\MarioVL\AppData\Local\Temp\s41g.o
+stacklo 60 0 ABS 0 - C:\Users\MarioVL\AppData\Local\Temp\s41g.o
 __Lintcode 8 0 CODE 0 intcode dist/default/production\ControlMotorPos.X.production.o
 __Lintret 0 0 ABS 0 intret dist/default/production\ControlMotorPos.X.production.o
 __Lirdata 0 0 CODE 0 irdata dist/default/production\ControlMotorPos.X.production.o
@@ -779,7 +779,7 @@ __Ltext16 0 0 ABS 0 text16 dist/default/production\ControlMotorPos.X.production.
 __Ltext17 0 0 ABS 0 text17 dist/default/production\ControlMotorPos.X.production.o
 __Ltext18 0 0 ABS 0 text18 dist/default/production\ControlMotorPos.X.production.o
 __Ltext19 0 0 ABS 0 text19 dist/default/production\ControlMotorPos.X.production.o
-__ramtop 300 0 RAM 0 ramtop C:\Users\MarioVL\AppData\Local\Temp\s4qk.o
+__ramtop 300 0 RAM 0 ramtop C:\Users\MarioVL\AppData\Local\Temp\s41g.o
 ___aldiv@dividend 11 0 COMRAM 1 cstackCOMRAM dist/default/production\ControlMotorPos.X.production.o
 _init_VNHIO C26 0 CODE 0 text4 dist/default/production\ControlMotorPos.X.production.o
 __CFG_PWMPIN$OFF 0 0 ABS 0 - dist/default/production\ControlMotorPos.X.production.o
