@@ -9,3 +9,4 @@ Raspberry/key_load_public
 Raspberry/key.ppk
 Raspberry/Python/*.txt
 Raspberry/Python/.idea
+Raspberry/__pycache__
