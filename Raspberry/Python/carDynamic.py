@@ -22,9 +22,12 @@ class carDynamic():
     def rackPos2angle(self, position):
         return (180*position)/(math.pi*self.PINION_RADIUS)
 
+    def radPerSec2revPerMin(self, vel):
+        return (vel*60)/(2*math.pi)
+
     def updateRackPosition(self, isTurnRight, angle):
         position = -1
-        angleFinder = angle
+        angleFinder = round(angle,1)
         varianceAllow = 0.01
 
         while -1 == position:
@@ -35,6 +38,10 @@ class carDynamic():
                 position = self.rackPos2angle(position)
             except:
                 angleFinder += varianceAllow
+                angleFinder = round(angleFinder,2)
+
+        if isTurnRight:
+            position += 100
 
         self.references.update({
             "pinionPosition" : round(position)
@@ -46,12 +53,12 @@ class carDynamic():
 
         if isTurnRight:
             self.rightWheelDistance = self.CAR_LENGTH/math.tan(angleRadians)
-            self.LeftWheelDistance = self.rightWheelDistance + self.CAR_WIDTH
+            self.leftWheelDistance = self.rightWheelDistance + self.CAR_WIDTH
             firstCateto = self.rightWheelDistance + (self.CAR_WIDTH / 2)
         else:
-            self.LeftWheelDistance = self.CAR_LENGTH / math.tan(angleRadians)
-            self.rightWheelDistance = self.LeftWheelDistance + self.CAR_WIDTH
-            firstCateto = self.LeftWheelDistance + (self.CAR_WIDTH / 2)
+            self.leftWheelDistance = self.CAR_LENGTH / math.tan(angleRadians)
+            self.rightWheelDistance = self.leftWheelDistance + self.CAR_WIDTH
+            firstCateto = self.leftWheelDistance + (self.CAR_WIDTH / 2)
 
         secondCateto = self.CAR_LENGTH/2
         self.carCenterDistance = math.sqrt(math.pow(firstCateto,2) + math.pow(secondCateto,2))
@@ -59,19 +66,23 @@ class carDynamic():
     def updateMaxVelocity(self):
         maxLinearVelocity = math.sqrt(self.carCenterDistance*self.GRAVITY*self.COEFFICIENT_FRICTION)
         self.maxAngularVelocity = maxLinearVelocity/self.carCenterDistance
-        if self.maxAngularVelocity > self.MAX_VEL_RPM:
-            self.maxAngularVelocity = self.MAX_VEL_RPM
 
     def updateMotorVelocities(self):
         rightLinearVel = self.maxAngularVelocity*self.rightWheelDistance
-        leftLinearVel = self.maxAngularVelocity*self.LeftWheelDistance
+        leftLinearVel = self.maxAngularVelocity*self.leftWheelDistance
 
-        rightAngularVel = rightLinearVel/self.WHEEL_RADIUS
-        leftAngularVel = leftLinearVel/self.WHEEL_RADIUS
+        rightAngularVel = self.radPerSec2revPerMin(rightLinearVel/self.WHEEL_RADIUS)
+        leftAngularVel = self.radPerSec2revPerMin(leftLinearVel/self.WHEEL_RADIUS)
+
+        if rightAngularVel > self.MAX_VEL_RPM:
+            rightAngularVel = self.MAX_VEL_RPM
+
+        if leftAngularVel > self.MAX_VEL_RPM:
+            leftAngularVel = self.MAX_VEL_RPM
 
         self.references.update({
-            "leftWheelVel" : leftAngularVel,
-            "rightWheelVel" : rightAngularVel
+            "leftWheelVel" : round(leftAngularVel),
+            "rightWheelVel" : round(rightAngularVel)
         })
 
     def getReferences(self):
