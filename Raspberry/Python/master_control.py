@@ -15,24 +15,36 @@ CONSTANT = {
 }
 
 # Global variables
-angleOffset = 0            # Angle offset from the camera in radians
+angleOffset = 0           # Angle offset from the camera in radians
 isTurnRight = True         # Flag to check the direction of the curve
+
+timeDelay = time.clock()
 
 # Use the lower-level numbering system for GPIO
 GPIO.setmode(GPIO.BCM)
+print("Start program")
 
 try:
     # Instance of modules
     dynamic = carDynamic.carDynamic(CONSTANT)
-    i2c = i2cComm.i2cCommunication(addressRightWheel=0x20, addressLeftWheel=0x23, addressRack=0x40)
+    print("Dinamica inicializada")
+    i2c = i2cComm.i2cCommunication(addressRightWheel=0x20, addressLeftWheel=0x23, addressRack=0x40,bus=1)
+    print("Inicio control general")
+
+    i2c.sendReferences(dynamic.getReferences())
 
     while True:
-        dynamic.updateRackPosition(isTurnRight=isTurnRight, angle=angleOffset)
-        dynamic.updateDistances(isTurnRight=isTurnRight, angle=angleOffset)
-        dynamic.updateMaxVelocity()
-        dynamic.updateMotorVelocities()
+        if time.clock() - timeDelay > 1:
+            timeDelay = time.clock()
+            dynamic.updateRackPosition(isTurnRight=isTurnRight, angle=angleOffset)
+            dynamic.updateDistances(isTurnRight=isTurnRight, angle=angleOffset)
+            dynamic.updateMaxVelocity()
+            dynamic.updateMotorVelocities()
 
-        i2c.sendReferences(dynamic.getReferences())
+            print(dynamic.getReferences())
+            i2c.sendReferences(dynamic.getReferences())
 
 except KeyboardInterrupt:
+    dynamic.cleanReferences()
+    i2c.sendReferences(dynamic.getReferences())
     GPIO.cleanup()

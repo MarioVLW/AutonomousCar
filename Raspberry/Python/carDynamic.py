@@ -11,9 +11,9 @@ class carDynamic():
         self.WHEEL_RADIUS = CONSTANT_DICT["WHEEL_RADIUS"]
         self.CAR_LENGTH = CONSTANT_DICT["CAR_LENGTH"]
         self.references = {
-            "rightWheelVel" : 0,
-            "leftWheelVel" : 0,
-            "pinionPosition" : 0
+            "rightWheelVel" : 1,
+            "leftWheelVel" : 1,
+            "pinionPosition" : 1
         }
 
         self.insideAngleArray = [40.61,31.16,30.71,29.57,27.96,26.36,25.39,24.76,23.16,21.56,19.3,19.02,17.485,15.94,14.4,12.87,12.04,11.95,10.35,8.75,8.04,7.15,5.55,3.95,3.49,2.35,0.75,0]
@@ -24,6 +24,13 @@ class carDynamic():
 
     def radPerSec2revPerMin(self, vel):
         return (vel*60)/(2*math.pi)
+
+    def cleanReferences(self):
+        self.references.update({
+            "rightWheelVel": 1,
+            "leftWheelVel": 1,
+            "pinionPosition": 1
+        })
 
     def updateRackPosition(self, isTurnRight, angle):
         position = -1

@@ -9,7 +9,7 @@ class i2cCommunication:
         self.addressRack = addressRack
 
     def sendReferences(self, references):
-        self.bus.write_byte_data(self.addressLeftWheel,0,references["leftWheelVel"])
-        self.bus.write_byte_data(self.addressRightWheel,0,references["rightWheelVel"])
-        self.bus.write_byte_data(self.addressRack,0,references["pinionPosition"])
+        self.bus.write_byte_data(self.addressLeftWheel,0,int(references["leftWheelVel"]))
+        self.bus.write_byte_data(self.addressRightWheel,0,int(references["rightWheelVel"]))
+        self.bus.write_byte_data(self.addressRack,0,int(references["pinionPosition"]))
 
